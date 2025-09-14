@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Application Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #E8F4FD; /* page background */
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #0078D7;
+            color: white;
+            padding: 10px 0;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+
+        nav {
+            margin-top: 10px;
+        }
+
+        nav button {
+            background-color: transparent;
+            border: none;
+            color: white;
+            padding: 10px 15px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        nav button:hover {
+            background-color: rgba(255,255,255,0.2);
+            border-radius: 5px;
+        }
+
+        nav button.active {
+            background-color: rgba(255,255,255,0.4);
+            border-radius: 5px;
+        }
+
+        .search-container {
+            text-align: right;
+            padding: 10px 20px;
+        }
+
+        .search-container input {
+            padding: 8px 12px;
+            width: 250px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            font-size: 14px;
+        }
+    
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px;
+            justify-items: center;
+            padding: 20px;
+        }
+
+        .app {
+            text-align: center;
+            background-color: #fff;
+            padding: 15px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.2s;
+        }
+
+        .app:hover {
+            transform: translateY(-5px);
+        }
+
+        .app img {
+            width: 100px;
+            height: 100px;
+            object-fit: contain;
+            margin-bottom: 10px;
+        }
+
+        .app button {
+            padding: 8px 15px;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            transition: opacity 0.2s;
+            background-color: #0078D7;
+        }
+
+        .app button:hover {
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>My Applications</h1>
+    <nav>
+        <button class="menu-btn active" onclick="filterCategory('all')">All</button>
+        <button class="menu-btn" onclick="filterCategory('apps')">Apps</button>
+        <button class="menu-btn" onclick="filterCategory('website')">Websites</button>
+        <button class="menu-btn" onclick="filterCategory('pdf')">PDF</button>
+        <button class="menu-btn" onclick="filterCategory('music')">Music</button>
+        <button class="menu-btn" onclick="filterCategory('video')">Video</button>
+        <button class="menu-btn" onclick="filterCategory('photo')">Photo</button>
+        <button class="menu-btn" onclick="filterCategory('books')">Books</button>
+        <button class="menu-btn" onclick="filterCategory('games')">Games</button>
+    </nav>
+</header>
+
+<div class="search-container">
+    <input type="text" id="searchBar" placeholder="Search apps..." onkeyup="filterApps()">
+</div>
+
+<div class="grid-container" id="appContainer">
+
+<!-- FULL APPLICATIONS LIST START -->
+
+<div class="app" data-category="apps" data-app="YouTube">
+    <h3>YouTube</h3>
+    <img src="youtube.png" alt="YouTube">
+    <button onclick="window.open('https://www.youtube.com/', '_blank')">Click</button>
+</div>
+
+<div class="app" data-category="apps" data-app="ChatGPT">
+    <h3>ChatGPT</h3>
+    <img src="Chatgbt.webp" alt="ChatGPT">
+    <button onclick="window.open('https://chatgpt.com/', '_blank')">Click</button>
+</div>
+
+<div class="app" data-category="apps" data-app="Google">
+    <h3>Google</h3>
+    <img src="Google.jpeg" alt="Google">
+    <button onclick="window.open('https://www.google.com/', '_blank')">Click</button>
+</div>
+
+<div class="app" data-category="website" data-app="Grace">
+    <h3>Grace</h3>
+    <img src="Grace.png" alt="Grace">
+    <button onclick="window.open('https://grace.edu.in/', '_blank')">Click</button>
+</div>
+
+<div class="app" data-category="apps" data-app="WhatsApp">
+    <h3>WhatsApp</h3>
+    <img src="W.jpeg" alt="WhatsApp">
+    <button onclick="window.open('https://web.whatsapp.com/', '_blank')">Click</button>
+</div>
+
+<div class="app" data-category="apps" data-app="Facebook">
+    <h3>Facebook</h3>
+    <img src="icons8-facebook-48.png" alt="Facebook">
+    <button onclick="window.open('https://www.facebook.com/', '_blank')">Click</button>
+</div>
+
+<div class="app" data-category="apps" data-app="Instagram">
+    <h3>Instagram</h3>
+    <img src="Insta.jpeg" alt="Instagram">
+    <button onclick="window.open('https://www.instagram.com/', '_blank')">Click</button>
+</div>
+
+<div class="app" data-category="apps" data-app="Gemini">
+    <h3>Gemini</h3>
+    <img src="gemini.jpeg" alt="Gemini">
+    <button onclick="window.open('https://gemini.google.com/', '_blank')">Click</button>
+</div>
+
+<div class="app" data-category="apps" data-app="Canva">
+    <h3>Canva</h3>
+    <img src="canva.jpeg" alt="Canva">
+    <button onclick="window.open('https://www.canva.com/en_in/', '_blank')">Click</button>
+</div>
+
+<div class="app" data-category="music" data-app="Spotify">
+    <h3>Spotify</h3>
+    <img src="spotify.jpeg" alt="Spotify">
+    <button onclick="window.open('https://open.spotify.com/home', '_blank')">Click</button>
+</div>
+
+<div class="app" data-category="website" data-app="Google Maps">
+    <h3>Google Maps</h3>
+    <img src="map.jpeg" alt="Google Maps">
+    <button onclick="window.open('https://www.google.co.in/maps', '_blank')">Click</button>
+</div>
+
+<div class="app" data-category="website" data-app="Anna University">
+    <h3>Anna University</h3>
+    <img src="anna.jpeg" alt="Anna University">
+    <button onclick="window.open('https://www.annauniv.edu/', '_blank')">Click</button>
+</div>
+
+<div class="app" data-category="website" data-app="LinkedIn">
+    <h3>LinkedIn</h3>
+    <img src="linked in.png" alt="LinkedIn">
+    <button onclick="window.open('https://in.linkedin.com/', '_blank')">Click</button>
+</div>
+
+<div class="app" data-category="website" data-app="Stucor">
+    <h3>Stucor</h3>
+    <img src="sto.jpeg" alt="Stucor">
+    <button onclick="window.open('https://stucor.in/', '_blank')">Click</button>
+</div>
+
+<div class="app" data-category="website" data-app="Flipkart">
+    <h3>Flipkart</h3>
+    <img src="f.jpeg" alt="Flipkart">
+    <button onclick="window.open('https://www.flipkart.com/', '_blank')">Click</button>
+</div>
+
+<div class="app" data-category="website" data-app="Amazon">
+    <h3>Amazon</h3>
+    <img src="A.jpeg" alt="Amazon">
+    <button onclick="window.open('https://www.amazon.in/', '_blank')">Click</button>
+</div>
+
+<div class="app" data-category="website" data-app="Meesho">
+    <h3>Meesho</h3>
+    <img src="M.jpeg" alt="Meesho">
+    <button onclick="window.open('https://www.meesho.com/', '_blank')">Click</button>
+</div>
+
+<div class="app" data-category="website" data-app="Netflix">
+    <h3>Netflix</h3>
+    <img src="Net.png" alt="Netflix">
+    <button onclick="window.open('https://www.netflix.com/in/', '_blank')">Click</button>
+</div>
+
+<div class="app" data-category="website" data-app="ZEDGE">
+    <h3>ZEDGE</h3>
+    <img src="Ze.jpeg" alt="ZEDGE">
+    <button onclick="window.open('https://www.zedge.net/ringtones-and-wallpapers', '_blank')">Click</button>
+</div>
+
+<div class="app" data-category="website" data-app="Mural">
+    <h3>Mural</h3>
+    <img src="Mu.png" alt="Mural">
+    <button onclick="window.open('https://www.mural.co/', '_blank')">Click</button>
+</div>
+
+<div class="app" data-category="apps" data-app="YouTube Music">
+    <h3>YouTube Music</h3>
+    <img src="yo.png" alt="YouTube Music">
+    <button onclick="window.open('https://music.youtube.com/', '_blank')">Click</button>
+</div>
+
+<div class="app" data-category="apps" data-app="Firefox">
+    <h3>Firefox</h3>
+    <img src="fi.jpeg" alt="Firefox">
+    <button onclick="window.open('https://www.firefox.com/en-US/browsers/desktop/', '_blank')">Click</button>
+</div>
+
+<div class="app" data-category="apps" data-app="Play Store">
+    <h3>Play Store</h3>
+    <img src="plk.png" alt="Play Store">
+    <button onclick="window.open('https://play.google.com/store/apps?hl=en-us', '_blank')">Click</button>
+</div>
+
+<div class="app" data-category="apps" data-app="Myntra">
+    <h3>Myntra</h3>
+    <img src="my.jpeg" alt="Myntra">
+    <button onclick="window.open('https://www.myntra.com/', '_blank')">Click</button>
+</div>
+
+<div class="app" data-category="apps" data-app="Gmail">
+    <h3>Gmail</h3>
+    <img src="gg.png" alt="Gmail">
+    <button onclick="window.open('https://mail.google.com/mail/u/0/#inbox', '_blank')">Click</button>
+</div>
+
+<div class="app" data-category="apps" data-app="Calculator">
+    <h3>Calculator</h3>
+    <img src="cal.png" alt="Calculator">
+    <button onclick="window.open('https://www.online-calculator.com/', '_blank')">Click</button>
+</div>
+
+<div class="app" data-category="apps" data-app="Google Classroom">
+    <h3>Google Classroom</h3>
+    <img src="goo.jpeg" alt="Google Classroom">
+    <button onclick="window.open('https://classroom.google.com/', '_blank')">Click</button>
+</div>
+
+<div class="app" data-category="apps" data-app="Files">
+    <h3>Files</h3>
+    <img src="ff.jpeg" alt="Files">
+    <button onclick="window.open('https://files.community/', '_blank')">Click</button>
+</div>
+
+<div class="app" data-category="apps" data-app="Notepad">
+    <h3>Notepad</h3>
+    <img src="no.png" alt="Notepad">
+    <button onclick="window.open('https://onlinenotepad.org/notepad', '_blank')">Click</button>
+</div>
+
+<div class="app" data-category="apps" data-app="Jupyter">
+    <h3>Jupyter</h3>
+    <img src="ju.png" alt="Jupyter">
+    <button onclick="window.open('https://jupyter.org/', '_blank')">Click</button>
+</div>
+
+<div class="app" data-category="apps" data-app="Hotstar">
+    <h3>Hotstar</h3>
+    <img src="jio.jpeg" alt="Hotstar">
+    <button onclick="window.open('https://www.hotstar.com/in/homea', '_blank')">Click</button>
+</div>
+
+<div class="app" data-category="apps" data-app="Padeepz">
+    <h3>Padeepz</h3>
+    <img src="pd.jpeg" alt="Padeepz">
+    <button onclick="window.open('https://padeepz.net/', '_blank')">Click</button>
+</div>
+
+<div class="app" data-category="apps" data-app="Snapchat">
+    <h3>Snapchat</h3>
+    <img src="sn.png" alt="Snapchat">
+    <button onclick="window.open('https://www.snapchat.com/', '_blank')">Click</button>
+</div>
+
+<div class="app" data-category="apps" data-app="Zomato">
+    <h3>Zomato</h3>
+    <img src="zo.jpeg" alt="Zomato">
+    <button onclick="window.open('https://www.zomato.com/chennai', '_blank')">Click</button>
+</div>
+
+<div class="app" data-category="apps" data-app="Swiggy">
+    <h3>Swiggy</h3>
+    <img src="sw.png" alt="Swiggy">
+    <button onclick="window.open('https://www.swiggy.com/', '_blank')">Click</button>
+</div>
+
+<div class="app" data-category="apps" data-app="Telegram">
+    <h3>Telegram</h3>
+    <img src="te.png" alt="Telegram">
+    <button onclick="window.open('https://telegram.org/', '_blank')">Click</button>
+</div>
+
+<div class="app" data-category="apps" data-app="Shopsy">
+    <h3>Shopsy</h3>
+    <img src="sop.jpeg" alt="Shopsy">
+    <button onclick="window.open('https://www.shopsy.in/', '_blank')">Click</button>
+</div>
+
+<div class="app" data-category="apps" data-app="Chalo">
+    <h3>Chalo</h3>
+    <img src="cha.jpeg" alt="Chalo">
+    <button onclick="window.open('https://chalo.com/', '_blank')">Click</button>
+</div>
+
+<div class="app" data-category="apps" data-app="Edge">
+    <h3>Edge</h3>
+    <img src="ed.jpeg" alt="Edge">
+    <button onclick="window.open('https://www.microsoft.com/en-us/edge/?form=MA13FJ', '_blank')">Click</button>
+</div>
+
+<div class="app" data-category="apps" data-app="VLC">
+    <h3>VLC</h3>
+    <img src="vlc.png" alt="VLC">
+    <button onclick="window.open('https://www.videolan.org/', '_blank')">Click</button>
+</div>
+
+<div class="app" data-category="apps" data-app="Excel">
+    <h3>Excel</h3>
+    <img src="exx.jpeg" alt="Excel">
+    <button onclick="window.open('https://excel.cloud.microsoft/', '_blank')">Click</button>
+</div>
+
+<div class="app" data-category="apps" data-app="Word">
+    <h3>Word</h3>
+    <img src="wz.jpeg" alt="Word">
+    <button onclick="window.open('https://word.cloud.microsoft/en-us/', '_blank')">Click</button>
+</div>
+
+<div class="app" data-category="website" data-app="Tamil Rocker">
+    <h3>Tamil Rocker</h3>
+    <img src="trr.jpeg" alt="Tamil Rocker">
+    <button onclick="window.open('https://www.moviesda.love/tamilrockers/', '_blank')">Click</button>
+</div>
+
+<div class="app" data-category="website" data-app="Isaimini">
+    <h3>Isaimini</h3>
+    <img src="is.jpeg" alt="Isaimini">
+    <button onclick="window.open('https://xn--3-lve1d0cya6hb2e.com/', '_blank')">Click</button>
+</div>
+
+<div class="app" data-category="website" data-app="Tamilyogi">
+    <h3>Tamilyogi</h3>
+    <img src="ty.jpeg" alt="Tamilyogi">
+    <button onclick="window.open('https://1tamilyogi.deal/', '_blank')">Click</button>
+</div>
+
+<div class="app" data-category="website" data-app="Tamil Kolly">
+    <h3>Tamil Kolly</h3>
+    <img src="tk.jpeg" alt="Tamil Kolly">
+    <button onclick="window.open('https://tamilkollymovies.xyz/', '_blank')">Click</button>
+</div>
+
+<div class="app" data-category="pdf" data-app="I love my PDF">
+    <h3>I love PDF</h3>
+    <img src="love.png" alt="I love PDF">
+    <button onclick="window.open('https://www.ilovepdf.com/', '_blank')">Click</button>
+</div>
+
+<!-- FULL APPLICATIONS LIST END -->
+
+</div>
+
+<script>
+    function filterCategory(category) {
+        const apps = document.querySelectorAll('.app');
+        const buttons = document.querySelectorAll('.menu-btn');
+        buttons.forEach(btn => btn.classList.remove('active'));
+        event.target.classList.add('active');
+
+        apps.forEach(app => {
+            if(category === 'all' || app.dataset.category === category) {
+                app.style.display = 'block';
+            } else {
+                app.style.display = 'none';
+            }
+        });
+    }
+
+    function filterApps() {
+        const query = document.getElementById('searchBar').value.toLowerCase();
+        const apps = document.querySelectorAll('.app');
+        apps.forEach(app => {
+            if(app.dataset.app.toLowerCase().includes(query)) {
+                app.style.display = 'block';
+            } else {
+                app.style.display = 'none';
+            }
+        });
+    }
+</script>
+
+</body>
+</html>
+<script>
+    // Sort applications alphabetically when page loads
+    window.onload = function() {
+        const container = document.getElementById("appContainer");
+        const apps = Array.from(container.getElementsByClassName("app"));
+
+        // Sort apps by data-app attribute
+        apps.sort((a, b) => {
+            return a.dataset.app.toLowerCase().localeCompare(b.dataset.app.toLowerCase());
+        });
+
+        // Append sorted apps back to container
+        apps.forEach(app => container.appendChild(app));
+    };
+
+    function filterCategory(category) {
+        const apps = document.querySelectorAll('.app');
+        const buttons = document.querySelectorAll('.menu-btn');
+        buttons.forEach(btn => btn.classList.remove('active'));
+        event.target.classList.add('active');
+
+        apps.forEach(app => {
+            if(category === 'all' || app.dataset.category === category) {
+                app.style.display = 'block';
+            } else {
+                app.style.display = 'none';
+            }
+        });
+    }
+
+    function filterApps() {
+        const query = document.getElementById('searchBar').value.toLowerCase();
+        const apps = document.querySelectorAll('.app');
+        apps.forEach(app => {
+            if(app.dataset.app.toLowerCase().includes(query)) {
+                app.style.display = 'block';
+            } else {
+                app.style.display = 'none';
+            }
+        });
+    }
+</script>
+<script>
+    let currentCategory = "all";   // track current selected menu
+    let searchHistory = [];        // store search terms
+
+    // Alphabetical sorting (same as before)
+    window.onload = function() {
+        const container = document.getElementById("appContainer");
+        const apps = Array.from(container.getElementsByClassName("app"));
+
+        apps.sort((a, b) => {
+            return a.dataset.app.toLowerCase().localeCompare(b.dataset.app.toLowerCase());
+        });
+
+        apps.forEach(app => container.appendChild(app));
+    };
+
+    // Menu filter
+    function filterCategory(category) {
+        currentCategory = category;  // save active category
+        const apps = document.querySelectorAll('.app');
+        const buttons = document.querySelectorAll('.menu-btn');
+        buttons.forEach(btn => btn.classList.remove('active'));
+        event.target.classList.add('active');
+
+        apps.forEach(app => {
+            if(category === 'all' || app.dataset.category === category) {
+                app.style.display = 'block';
+            } else {
+                app.style.display = 'none';
+            }
+        });
+    }
+
+    // Search filter with category
+    function filterApps() {
+        const query = document.getElementById('searchBar').value.toLowerCase();
+        const apps = document.querySelectorAll('.app');
+
+        // save query to history if not empty
+        if(query && !searchHistory.includes(query)) {
+            searchHistory.push(query);
+            showSearchHistory();
+        }
+
+        apps.forEach(app => {
+            let matchCategory = (currentCategory === 'all' || app.dataset.category === currentCategory);
+            let matchName = app.dataset.app.toLowerCase().includes(query);
+
+            if(matchCategory && matchName) {
+                app.style.display = 'block';
+            } else {
+                app.style.display = 'none';
+            }
+        });
+    }
+
+    // Show previous search history for short time
+    function showSearchHistory() {
+        let historyBox = document.getElementById("historyBox");
+        historyBox.innerHTML = ""; 
+
+        searchHistory.slice(-5).forEach(item => {  // show last 5
+            let div = document.createElement("div");
+            div.textContent = item;
+            div.style.cursor = "pointer";
+            div.style.padding = "5px";
+            div.style.borderBottom = "1px solid #eee";
+
+            div.onclick = function() {
+                document.getElementById('searchBar').value = item;
+                filterApps();
+                historyBox.style.display = "none";
+            };
+
+            historyBox.appendChild(div);
+        });
+
+        historyBox.style.display = "block";
+
+        // hide after 3 seconds
+        setTimeout(() => {
+            historyBox.style.display = "none";
+        }, 3000);
+    }
+</script>
